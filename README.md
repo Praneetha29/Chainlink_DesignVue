@@ -1,4 +1,4 @@
-![Capture]()
+![Capture](https://github.com/Praneetha29/ETHIndia/blob/main/public/capture.jpeg)
 
 # EthInk
 ---
@@ -17,10 +17,52 @@ Contents
 
 ### Installation:
 ---
-#### Setup Virtual Environment
+#### Installing and running the front-end
+1. clone the repository, using the following code. 
+```
+git clone {repo_name}
+```
+2.  go to eth-template 
+```
+cd eth-template/
+```
+3. install all the dependencies 
+```
+npm install
+```
+4. start the application 
+```
+npm start
+```
 
+#### Deploying the smart contract 
+1. go to smartContracts 
+```
+cd smartContracts/
+```
+2. install all the dependencies 
+```
+npm install
+```
+3. compile the contracts 
+```
+npx hardhat compile
+```
+4. deploy the contract in the preferred chains
 
-
+#### Running the backend
+1. go to backend
+```
+cd backend/
+```
+2. install the dependencies 
+```
+npm install
+```
+3. run the server 
+```
+node server.js
+```
 ### Tech-Stacks Used:
 ---
 
