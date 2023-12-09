@@ -192,7 +192,7 @@ const getPaidSepoila=async()=>{
             <Card>
               <NFTImage src={`https://gateway.lighthouse.storage/ipfs/${nft}`} />
               <NFTName>{nft.name}</NFTName>
-            </Card >
+            </Card>
           ))}
         </NFTsWrapper>
         <SectionHeading>Your NFTs</SectionHeading>

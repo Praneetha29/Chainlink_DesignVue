@@ -10,3 +10,4 @@ const ProfilePage = ({marketplace, nft, account}) => {
 }
 
 export default ProfilePage
+  

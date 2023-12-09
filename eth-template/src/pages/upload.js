@@ -1,9 +1,9 @@
 import React from 'react'
 import Upload from '../components/Upload'
 
-const UploadPage = () => {
+const UploadPage = ({marketplace,nft,account}) => {
   return (
-    <Upload />
+    <Upload marketplace={marketplace} nft={nft} account={account}/>
   )
 }
 
