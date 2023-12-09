@@ -4,10 +4,9 @@ import chainlinkLogo from '../../images/Chainlink_logo.png';
 import MetaMaskLogo from '../../images/MetaMask_logo.jpeg';
 import LighthouseLogo from '../../images/Lighthouse.storage_logo.jpeg';
 import PolygonLogo from '../../images/Polygon_logo.png';
-import PowerloomLogo from '../../images/Powerloom_logo.png';
 import PushLogo from '../../images/Push_logo.jpeg';
 import ScrollLogo from '../../images/Scroll_logo.png';
-import WakuLogo from '../../images/Waku_logo.jpeg';
+
 
 
 const sponsorsData = [
@@ -15,10 +14,8 @@ const sponsorsData = [
   { logo: LighthouseLogo, name: 'Lighthouse' },
   { logo: MetaMaskLogo , name: 'MetaMask' },
   { logo: PolygonLogo, name: 'Polygon' },
-  { logo: PowerloomLogo, name: 'Powerloom' },
   { logo: PushLogo, name: 'Push' },
   { logo: ScrollLogo, name: 'Scroll' },
-  { logo: WakuLogo, name: 'Waku' },
 
 ];
 
