@@ -28,8 +28,9 @@ import image8 from '../../images/svg-1.svg';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useState } from 'react';
+import { ethers } from 'ethers';
 
-const Profile = () => {
+const Profile = ({marketplace, nft, account, tokenTransferor, tokenCCIP, tokenLINK}) => {
   const nftData = [
     { name: 'NFT 1', image: image1 },
     { name: 'NFT 2', image: image2 },
@@ -41,9 +42,26 @@ const Profile = () => {
     { name: 'NFT 8', image: image8 }
   ];
 
- 
+  const [myDesigns, setMyDesigns] = useState([])
+  const [polygon, setPolygon] = useState(0);
+  const [sepoila, setSepoila] = useState(0);
+  const [myNFTs, setMyNFTs] = useState([]); //setup
 
- 
+  const loadMyDesigns = async () => {
+    const myDesigns = await marketplace.getDesigns(account);
+    setMyDesigns(myDesigns);
+    console.log("My Designs: ", myDesigns);
+  }
+  const changeToInt = (_x) => {
+    const x = ethers.utils.formatEther(_x);
+    return x;
+  };
+
+  useEffect(() => {
+    if (account) {
+      loadMyDesigns();
+    }
+  },[account]);
 
   const settings = {
     dots: false,
@@ -100,6 +118,59 @@ const Profile = () => {
     );
   }
 
+  const handleAutoPay = async () => {
+    try {
+        const tx = await marketplace.autopayCreators();
+        await tx.wait();
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+useEffect(() => {
+  const getPolygon = async () => {
+    const polygon = await marketplace.getCreatorCompPolygon(account);
+    const sepoila = await marketplace.getCreatorCompSepoila(account);
+    setPolygon(ethers.utils.formatEther(polygon));
+    setSepoila(ethers.utils.formatEther(sepoila));
+  };
+  if(account){
+    getPolygon();
+  }
+}, [account]);
+
+const getPaidPolygon=async()=>{
+  try {
+    console.log((polygon*(10**18)).toString());
+    console.log("Hello");
+    const tx = await marketplace.receiveCreatorCompPolygon(account);
+      await tx.wait();
+    const approveCCIP = await tokenCCIP.approve(tokenTransferor.address, (polygon*(10**18)).toString());
+      await approveCCIP.wait();
+    const tx1 = await tokenTransferor.transferCCIP(account, (polygon*(10**18)).toString());
+      await tx1.wait();
+    console.log("Transaction Hash: ", tx.hash);
+    alert("Payment recieved \n Transaction Hash: "+tx.hash);
+  } catch (error) {
+      console.error('Error:', error);
+  }
+}
+
+const getPaidSepoila=async()=>{
+  try{
+    console.log((sepoila*(10**18)).toString());
+    console.log("Hello");
+    const tx0 = await marketplace.receiveCreatorCompSepoila(account);
+      await tx0.wait();
+    const tx=await tokenTransferor.allowlistDestinationChain("16015286601757825753","true");
+      await tx.wait();
+    const tx1 = await tokenTransferor.transferTokensPayLINK("16015286601757825753",account,tokenCCIP.address,(sepoila*(10**18)).toString());
+      await tx1.wait();
+    console.log("Transaction Hash: ", tx1.hash);
+  }catch(error){
+    console.error('Error:', error);
+  }
+}
+
   return (
     <>
 
@@ -108,20 +179,20 @@ const Profile = () => {
         <UserContainer>
           <UserIcon />
           <div>
-            <WalletAddress>account:</WalletAddress>
+            <WalletAddress>account:{account}</WalletAddress>
             <AdditionalInfo>Additional Information</AdditionalInfo>
           </div>
         </UserContainer>
       </Container>
-      
+      {/* <Navbar showNavMenu={false} /> */}
       <ProfileContainer>
         <SectionHeading>Uploaded Designs</SectionHeading>
         <NFTsWrapper {...settings}>
           {myDesigns.map((nft) => (
             <Card>
-              <NFTImage  />
+              <NFTImage src={`https://gateway.lighthouse.storage/ipfs/${nft}`} />
               <NFTName>{nft.name}</NFTName>
-            </Card>
+            </Card >
           ))}
         </NFTsWrapper>
         <SectionHeading>Your NFTs</SectionHeading>
@@ -133,6 +204,15 @@ const Profile = () => {
             </Card>
           ))}
         </NFTsWrapper>
+        <br></br>
+        <div>
+        <SectionHeading>Account:{account}</SectionHeading>
+        {/* <button onClick={handleAutoPay}>AutoPay</button> */}
+        <SectionHeading>Polygon Compensation= {polygon}</SectionHeading>
+        <button onClick={getPaidPolygon}>Get Polygon Compensation</button>
+        <SectionHeading>Sepoila Compensation= {sepoila}</SectionHeading>
+        <button onClick={getPaidSepoila}>Get Sepoila Compensation</button>
+        </div>
       </ProfileContainer>
     </>
   );
