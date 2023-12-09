@@ -1,4 +1,4 @@
-![Capture](https://res-console.cloudinary.com/dhhax6yae/thumbnails/v1/image/upload/v1702160891/V2hhdHNBcHBfSW1hZ2VfMjAyMy0xMi0xMF9hdF8zLjU3LjI4X0FNX3hqd2g3MA==/grid_landscape)
+![Capture]()
 
 # EthInk
 ---
@@ -25,7 +25,11 @@ Contents
 ---
 
 - ReactJS
-- 
+- NodeJS
+- Solidity
+- HardHat
+- Python
+- HuggingFace
 
 ### Sponsors Used:
 ---
