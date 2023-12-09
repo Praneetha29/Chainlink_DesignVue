@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
 import lighthouse from '@lighthouse-web3/sdk';
 import { ethers } from 'ethers';
 

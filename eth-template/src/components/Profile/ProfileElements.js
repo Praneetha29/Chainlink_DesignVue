@@ -1,33 +1,13 @@
 import styled from 'styled-components';
 import Slider from 'react-slick';
-import { Link } from 'react-router-dom';
 
-export const Container = styled.div`
-  background: linear-gradient(to bottom, #010606, #323232);
-  height: 8vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-`;
-
-export const Icon = styled(Link)`
-  text-decoration: none;
-  color: #fff;
-  font-size: 32px;
-  font-weight: 600;
-
-  @media screen and (max-width: 480px) {
-    font-size: 24px;
-  }
-`;
 
 export const ProfileContainer = styled.div`
   max-width: 100%;
   margin: 0 auto;
   padding: 20px;
   background: #010606;
-  height:100vh;
+  height:96vh;
   margin-top: 4rem;
 `;
 
@@ -116,9 +96,31 @@ export const NFTName = styled.h3`
   margin-top: 8px;
 `;
 
-export const SectionHeading = styled.h2`
+export const SectionHeading = styled.h3`
   font-size: 24px;
   color: #01bf71;
   margin-bottom: 30px;
   margin-top:30px;
+  
 `;
+
+export const StyledBtn = styled.button`
+border-radius: 50px;
+ white-space: nowrap;
+ padding: 10px 22px;
+ color: #01bf71;
+ font-size: 16px;
+ outline: none;
+ border: none;
+ cursor: pointer;
+ transistion: all 0.2s ease-in-out;
+ text-decoration: none;
+ border: 3px solid #01bf71;
+ background: transparent;
+
+ &:hover {
+    transition: all 0.2s ease-in-out;
+    background: #fff;
+    color: #010606;
+ }
+`

@@ -6,15 +6,8 @@ import {
   NFTName,
   SectionHeading,
   Card,
-  Container,
-  Icon,
-  UserContainer,
-  UserIcon,
-  WalletAddress,
-  AdditionalInfo
+  StyledBtn
 } from './ProfileElements';
-
-import Navbar from '../Navbar';
 
 import image1 from '../../images/svg-1.svg';
 import image2 from '../../images/svg-1.svg';
@@ -173,18 +166,6 @@ const getPaidSepoila=async()=>{
 
   return (
     <>
-
-      <Container>
-        <Icon to="/">DesignVue</Icon>
-        <UserContainer>
-          <UserIcon />
-          <div>
-            <WalletAddress>account:{account}</WalletAddress>
-            <AdditionalInfo>Additional Information</AdditionalInfo>
-          </div>
-        </UserContainer>
-      </Container>
-      {/* <Navbar showNavMenu={false} /> */}
       <ProfileContainer>
         <SectionHeading>Uploaded Designs</SectionHeading>
         <NFTsWrapper {...settings}>
@@ -208,10 +189,10 @@ const getPaidSepoila=async()=>{
         <div>
         <SectionHeading>Account:{account}</SectionHeading>
         {/* <button onClick={handleAutoPay}>AutoPay</button> */}
-        <SectionHeading>Polygon Compensation= {polygon}</SectionHeading>
-        <button onClick={getPaidPolygon}>Get Polygon Compensation</button>
-        <SectionHeading>Sepoila Compensation= {sepoila}</SectionHeading>
-        <button onClick={getPaidSepoila}>Get Sepoila Compensation</button>
+        <SectionHeading>Polygon Compensation: {polygon}</SectionHeading>
+        <StyledBtn onClick={getPaidPolygon}>Get Polygon Compensation</StyledBtn>
+        <SectionHeading>Sepoila Compensation: {sepoila}</SectionHeading>
+        <StyledBtn onClick={getPaidSepoila}>Get Sepoila Compensation</StyledBtn>
         </div>
       </ProfileContainer>
     </>

@@ -20,14 +20,16 @@ z-index:10;
 
 `
 
-export const NavbarContainer = styled.div `
-display:flex;
-justify-content:space-between;
+export const NavbarContainer = styled.div`
+display: flex;
+justify-content: space-between; // Added justify-content property
 height: 80px;
-z-index:1;
+z-index: 1;
 width: 100%;
-padding: 0 24px;
+padding: 0 8px; // Reduced padding on the sides as requested
 max-width: 1100px;
+gap:10px;
+
 `
 
 export const NavLogo = styled(LinkR)`
@@ -57,24 +59,12 @@ display: none;
 }
 `
 
- export const NavMenu = styled.ul`
- display:flex;
- align-items:center;
- list-style:none;
- text-align: center;
- margin-right:-22px;
-
- @media screen and (max-width:768px){
-    display:none;
-
- }
- `
 
  export const NavItem = styled.li `
  height: 80px;
  `
 
- export const NavLinks = styled(LinkS)`
+ export const NavLinks = styled(LinkR)`
  color:#fff;
  display:flex;
  align-items: center;
@@ -92,6 +82,7 @@ display: none;
  export const NavBtn= styled.div `
  display:flex;
  align-items:center;
+ font-size:20px;
 
  @media screen and (max-width:768px){
     display:none;

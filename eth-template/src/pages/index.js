@@ -5,9 +5,6 @@ import HeroSection from '../components/HeroSection'
 import InfoSection from '../components/InfoSection'
 import { homeObjOne } from '../components/InfoSection/Data';
 import Features from '../components/Features'
-import Profile from "../components/Profile";
-import Upload from "../components/Upload/index";
-import CreateDesign from "../components/CreateDesign";
 import Sponsors from "../components/Sponsors/Sponsors";
 import NFT from "../contracts/NFT.json";
 import Marketplace from "../contracts/NFTMarketplace.json";
@@ -72,14 +69,11 @@ const toggle = () => {
   return (
    <>
    <Sidebar isOpen={isOpen} toggle={toggle}></Sidebar>
-   <Navbar web3Handler={web3Handler} account={account} showNavMenu={true} />
+   <Navbar web3Handler={web3Handler} account={account}/>
    <HeroSection />
    <InfoSection {...homeObjOne}/>
    <Features />
-   <Profile marketplace={marketplace} nft={nft} account={account} tokenTransferor={tokenTransferor} tokenCCIP={tokenCCIP} tokenLINK={tokenLINK}/>
-   <Upload marketplace={marketplace} nft={nft} account={account}/>
-   <CreateDesign marketplace={marketplace} nft={nft} account={account} tokenTransferor={tokenTransferor} tokenCCIP={tokenCCIP} tokenLINK={tokenLINK}/>
-   
+   <Sponsors />
    </>
   )
 }
