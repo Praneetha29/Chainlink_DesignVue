@@ -8,6 +8,7 @@ import Marketplace from "./contracts/NFTMarketplace.json";
 import TokenTransferor from "./contracts/TokenTransferor.json";
 import LINK from "./contracts/LINK.json";
 import CCIP from "./contracts/CCIP.json";
+import { useSDK } from '@metamask/sdk-react-ui'
 import React, { useEffect, useState } from "react";
 import VerifyPage from './pages/verify';
 import ProfilePage from './pages/profile';
@@ -17,6 +18,7 @@ import MintPage from './pages/mint';
 const {ethers} = require("ethers");
 
 function App() {
+//const { account, sdk, connected, connecting, provider, chainId } = useSDK()
 
 const [account, setAccount] = useState(null);
 const [marketplace, setMarketplace] = useState(null);
