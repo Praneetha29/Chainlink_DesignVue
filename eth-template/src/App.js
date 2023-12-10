@@ -38,15 +38,16 @@ const web3Handler = async () => {
 }
 
 const loadContracts = async (signer) => {
-  const marketplace = new ethers.Contract("0x1efE1B83A402B8D10Fd3e04EA3140f9ce569fd21", Marketplace.abi, signer);
+  const marketplace = new ethers.Contract("0xe58704Dd05d625E8E4d67c3ce28EE4F3Ad81176e", Marketplace.abi, signer);
   setMarketplace(marketplace);
-  const nft = new ethers.Contract("0xB1b53A92E878040B769dcdFbFCC2957550F89879", NFT.abi, signer);
+  const nft = new ethers.Contract("0xDD299063F4aF2c5DDfbC109656e7F71Ce3C2176a", NFT.abi, signer);
   setNft(nft);
-  const tokenTransferor = new ethers.Contract("0xCfBA60B6597B02Befe53F667EBe23B140C1f64Fe", TokenTransferor.abi, signer);
+  const tokenTransferor = new ethers.Contract("0x759c09B5b5E02b8023e17E01990838c9fe19877E", TokenTransferor.abi, signer);
   setTokenTransferor(tokenTransferor);
   const tokenLINK = new ethers.Contract("0x326C977E6efc84E512bB9C30f76E30c160eD06FB ", LINK.abi, signer);
   setTokenLINK(tokenLINK);
   const ccip = new ethers.Contract("0xf1E3A5842EeEF51F2967b3F05D45DD4f4205FF40", CCIP.abi, signer);
+  setTokenCCIP(ccip);
   // setLoading(false);
 }
 

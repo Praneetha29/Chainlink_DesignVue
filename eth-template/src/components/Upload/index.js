@@ -24,6 +24,9 @@ import {
 import Navbar from '../Navbar';
 import lighthouse from '@lighthouse-web3/sdk';
 import { ethers } from 'ethers';
+import PolygonIDVerifier from "./PolygonIDVerifier";
+import { Center, Card, Image, CardBody, Container as cont } from "@chakra-ui/react";
+import PolygonId from "./polygonId";
 //API: 7c85bd02.2b99f4e9253346b3ab955d627c237a29
 
 const Upload = ({marketplace, nft, account}) => {
@@ -34,6 +37,7 @@ const Upload = ({marketplace, nft, account}) => {
   const [Chain, setChain] = useState('');
   const [DesignType, setDesignType] = useState('');
   const [files, setfiles] = useState(null);
+  const [provedAccessBirthday, setProvedAccessBirthday] = useState(true);
 
   const handleChainChange = (e) => {
     setChain(e.target.value);
@@ -96,6 +100,7 @@ const Upload = ({marketplace, nft, account}) => {
 
   return (
     <>
+     {provedAccessBirthday ? (
       <SplitContainer>
         <LeftContainer>
         <account>Account:{account}</account>
@@ -131,6 +136,9 @@ const Upload = ({marketplace, nft, account}) => {
           </UploadedImageContainer>
         </RightContainer>
       </SplitContainer>
+      ):(
+        <PolygonId />
+      )}
     </>
   );
 };

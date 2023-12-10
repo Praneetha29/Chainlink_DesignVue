@@ -13,14 +13,11 @@ import {
 } from './VerifyElements';
 
 const Verify = () => {
-
-
   const [uploadedFile, setUploadedFile] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    window.location.href = 'https://issuer-ui.polygonid.me/credentials/scan-link/1aee0baa-3c1c-4d1b-9cab-39293c2c1322';
-
+    window.location.href = 'https://issuer-ui.polygonid.me/credentials/scan-link/b43f2aa5-14c8-4488-b599-4bfbe01d6885';
 };
 
   const onDrop = useCallback((acceptedFiles) => {

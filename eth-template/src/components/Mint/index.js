@@ -85,46 +85,50 @@ const Mint = ({ marketplace, nft, account, tokenTransferor, tokenCCIP, tokenLINK
     };
     let imh = "";
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        // Log the specific values: Description, Type, and File
+      e.preventDefault();
+      // Log the specific values: Description, Type, and File
 
 
-        const description = formValues.description;
-        const type = formValues.type;
-        // You can handle additional form submission logic here
-        if (files) {
-            const output = await lighthouse.upload(files, "7c85bd02.2b99f4e9253346b3ab955d627c237a29", false, null, progressCallback);
-            console.log('File Status:', output);
-            imh = output.data.Hash;
-            console.log('Visit at https://gateway.lighthouse.storage/ipfs/' + output.data.Hash);
-        }
-        let hash = imh;
-        console.log(description, type, hash);
+      const description = formValues.description;
+      const type = formValues.type;
 
-        const metaData = JSON.stringify({ description, type, hash });
-        const response = await lighthouse.uploadText(metaData, "7c85bd02.2b99f4e9253346b3ab955d627c237a29");
-        console.log(response);
+      console.log(description);
+      //You can handle additional form submission logic here
+      if (files) {
+          const output = await lighthouse.upload(files, "7c85bd02.2b99f4e9253346b3ab955d627c237a29", false, null, progressCallback);
+          console.log('File Status:', output);
+          imh = output.data.Hash;
+          console.log('Visit at https://gateway.lighthouse.storage/ipfs/' + output.data.Hash);
+      }
+      let hash = imh;
+      console.log(description, type, hash);
 
-        const uri = "https://gateway.lighthouse.storage/ipfs/" + response.data.Hash;
-        console.log(uri);
-        console.log(account);
-        console.log(marketplace);
+      const metaData = JSON.stringify({ description, type, hash });
+      const response = await lighthouse.uploadText(metaData, "7c85bd02.2b99f4e9253346b3ab955d627c237a29");
+      console.log(response);
+
+      const uri = "https://gateway.lighthouse.storage/ipfs/" + response.data.Hash;
+      console.log(uri);
+      console.log(account);
+      console.log(marketplace);
+      console.log(imh);
+      // console.log(uri.hash);
 
 
-        console.log(tokenCCIP);
+      console.log(tokenCCIP);
 
-        const approveCCIP = await tokenCCIP.approve(nft.address, toWei(0.03));
-        await approveCCIP.wait();
-        // const approveLINK = await tokenLINK.approve(nft.address, toWei(0.03));
-        // await approveLINK.wait();
+      const approveCCIP = await tokenCCIP.approve(nft.address, toWei(0.03));
+      await approveCCIP.wait();
+      // const approveLINK = await tokenLINK.approve(nft.address, toWei(0.03));
+      // await approveLINK.wait();
 
-        const mint = await nft.mint(uri, toWei(0.03));
-        await mint.wait();
-        const id = await nft.tokenCount();
-        await (await nft.setApprovalForAll(marketplace.address, true)).wait();
-        await (await marketplace.makeItem(nft.address, description, id, toWei(0.03), type)).wait();
-        console.log(4);
-        alert("NFT created and Design approved");
+      const mint = await nft.mint(uri, toWei(0.03));
+      await mint.wait();
+      const id = await nft.tokenCount();
+      await (await nft.setApprovalForAll(marketplace.address, true)).wait();
+      await (await marketplace.makeItem(nft.address, imh, id, toWei(0.03), type)).wait();
+      console.log(4);
+      alert("NFT created and Design approved");
     };
 
 
@@ -167,6 +171,14 @@ const Mint = ({ marketplace, nft, account, tokenTransferor, tokenCCIP, tokenLINK
           </LeftContainer>
           <RightContainer>
             <UploadContainer>
+
+            <Text>Description:</Text>
+              <StyledInput
+                type="text"
+                name="description"
+                value={formValues.description}
+                onChange={handleInputChange}
+              />
               <Options>
                 <Text>Type:</Text>
                 <select name="type" value={formValues.type} onChange={handleInputChange}>
@@ -182,7 +194,7 @@ const Mint = ({ marketplace, nft, account, tokenTransferor, tokenCCIP, tokenLINK
                 <Text>Upload Image:</Text>
                 <StyledInput onChange={e => setfiles(e.target.files)} type="file" />
               </div>
-              <FormButton type="submit">Submit</FormButton>
+              <FormButton type="submit" onClick={handleSubmit}>Submit</FormButton>
             </UploadContainer>
           </RightContainer>
         </SplitContainer>

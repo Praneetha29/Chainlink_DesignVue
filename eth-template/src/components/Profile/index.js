@@ -39,11 +39,26 @@ const Profile = ({marketplace, nft, account, tokenTransferor, tokenCCIP, tokenLI
   const [polygon, setPolygon] = useState(0);
   const [sepoila, setSepoila] = useState(0);
   const [myNFTs, setMyNFTs] = useState([]); //setup
+  const [listedItems, setListedItems] = useState([""])
 
   const loadMyDesigns = async () => {
     const myDesigns = await marketplace.getDesigns(account);
     setMyDesigns(myDesigns);
     console.log("My Designs: ", myDesigns);
+  }
+  const loadNFTs = async () => {
+    const itemCount = await marketplace.itemCount()
+    let listedItems = []
+    for (let indx = 1; indx <= itemCount; indx++) {
+      const i = await marketplace.items(indx)
+      // console.log("Item: ", i.owner);
+      if ((i.owner.toLowerCase()) === account){
+        console.log("Desc: ", i.description);
+        listedItems.push(i.description);
+      }
+    }
+    setListedItems(listedItems);
+    console.log("Listed Items: ", listedItems);
   }
   const changeToInt = (_x) => {
     const x = ethers.utils.formatEther(_x);
@@ -53,6 +68,7 @@ const Profile = ({marketplace, nft, account, tokenTransferor, tokenCCIP, tokenLI
   useEffect(() => {
     if (account) {
       loadMyDesigns();
+      loadNFTs();
     }
   },[account]);
 
@@ -118,7 +134,7 @@ const Profile = ({marketplace, nft, account, tokenTransferor, tokenCCIP, tokenLI
     } catch (error) {
         console.error('Error:', error);
     }
-}
+  }
 useEffect(() => {
   const getPolygon = async () => {
     const polygon = await marketplace.getCreatorCompPolygon(account);
@@ -178,9 +194,9 @@ const getPaidSepoila=async()=>{
         </NFTsWrapper>
         <SectionHeading>Your NFTs</SectionHeading>
         <NFTsWrapper {...settings}>
-          {nftData.map((nft, index) => (
-            <Card key={index}>
-              <NFTImage src={nft.image} alt={nft.name} />
+          {listedItems.map((nft) => (
+            <Card>
+              <NFTImage src={`https://gateway.lighthouse.storage/ipfs/${nft}`} />
               <NFTName>{nft.name}</NFTName>
             </Card>
           ))}
