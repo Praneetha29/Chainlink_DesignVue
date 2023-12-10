@@ -56,7 +56,7 @@ function PolygonID() {
                     fontSize: "8px",
                   }}
                 >
-                  Template built with 💜 by CodeCrushers
+                     built with 💜 by CodeCrushers
                 </p>
               </a>
             </Card>

@@ -37,7 +37,7 @@ const Upload = ({marketplace, nft, account}) => {
   const [Chain, setChain] = useState('');
   const [DesignType, setDesignType] = useState('');
   const [files, setfiles] = useState(null);
-  const [provedAccessBirthday, setProvedAccessBirthday] = useState(true);
+  const [provedAccessBirthday, setProvedAccessBirthday] = useState(false);
 
   const handleChainChange = (e) => {
     setChain(e.target.value);
