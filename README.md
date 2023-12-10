@@ -1,9 +1,9 @@
 ![Capture](https://github.com/Praneetha29/ETHIndia/blob/main/public/capture.jpeg)
 
-# EthInk
+# DesignVue
 ---
 
-Welcome to `EthInk` – the nexus where innovation meets tradition in the realm of digital artistry. Born at the crossroads of art and technology, EthInk is an avant-garde NFT marketplace that transcends boundaries, redefining the artistic experience for creators and collectors alike.
+Welcome to `DesignVue` – the nexus where innovation meets tradition in the realm of digital artistry. Born at the crossroads of art and technology, EthInk is an avant-garde NFT marketplace that transcends boundaries, redefining the artistic experience for creators and collectors alike.
 
 --------
 
@@ -164,6 +164,6 @@ Scroll Ethescan Link - https://sepolia.scrollscan.dev//address/0x0F6D79ecd5d71c9
 
 ### Demo
 ---
-[Deployed Link]()
-[Demo Video]()
+[Deployed Link](eth-india-dwaipayan25.vercel.app/)
+[Demo Video](https://youtu.be/CGmxrl7Qrew)
 
