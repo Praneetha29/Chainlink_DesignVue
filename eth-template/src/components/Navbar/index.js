@@ -1,4 +1,4 @@
-
+import { MetaMaskButton } from "@metamask/sdk-react-ui";
 import React, { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { Nav, NavbarContainer, NavLogo, MobileIcon, NavLinks, NavBtn, NavBtnLink, NavBtnVerify } from './NavbarElements';
@@ -46,18 +46,20 @@ const Navbar = ({ web3Handler, account }) => {
                     <NavBtn>
                         <NavBtnVerify to="/verify">Verify User</NavBtnVerify>
                     </NavBtn>
-
                     <NavBtn>
                         {account ? (
-                            <NavBtnLink>
+                            <NavBtnLink onClick={web3Handler}>
                                 {account.slice(0, 6)}...{account.slice(-4)}
                             </NavBtnLink>
                         ) : (
                             <NavBtnLink onClick={web3Handler}>
-                                Connect Wallet
+                                Load Contracts
                             </NavBtnLink>
                         )}
                     </NavBtn>
+                    <MetaMaskButton theme={"dark"} color="black"></MetaMaskButton>
+                    
+                    
                 </NavbarContainer>
             </Nav>
         </>
