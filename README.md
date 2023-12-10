@@ -104,7 +104,7 @@ node server.js
 
 --------
 
-### EthInk Captures:
+### DesignVue Captures:
 
 ---
 
